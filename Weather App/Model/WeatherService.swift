@@ -21,7 +21,7 @@ protocol WeatherServiceDelegate {
 
 struct WeatherService {
     
-    let API_KEY = "92a1e9f1824fa55e7f9e4a42c5eb335c"
+    let API_KEY = "***"
     let singleDataURL = "http://api.openweathermap.org/data/2.5/weather"
     let multipleDataURL = "http://api.openweathermap.org/data/2.5/forecast"
     var delegate: WeatherServiceDelegate?
