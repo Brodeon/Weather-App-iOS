@@ -21,7 +21,7 @@ protocol WeatherServiceDelegate {
 
 struct WeatherService {
     
-    let API_KEY = "***"
+    let API_KEY = Info.API_KEY
     let singleDataURL = "http://api.openweathermap.org/data/2.5/weather"
     let multipleDataURL = "http://api.openweathermap.org/data/2.5/forecast"
     var delegate: WeatherServiceDelegate?
@@ -33,7 +33,8 @@ struct WeatherService {
                 let result = JSON(response.result.value!)
                 let temperature = Int(result["main"]["temp"].doubleValue)
                 let city = result["name"].stringValue
-                let weather = Weather(city: city, temperature: temperature)
+                let weatherCondition = result["weather"][0]["id"].intValue
+                let weather = Weather(city: city, temperature: temperature, weatherCondition: weatherCondition)
                 
                 self.delegate?.weatherResponse(weatherData: weather, error: nil)
             } else {
@@ -53,8 +54,9 @@ struct WeatherService {
                 for value in jsonArray {
                     let temperature = Int(value["main"]["temp"].doubleValue)
                     let date = self.stringToDate(stringDate: value["dt_txt"].stringValue)
+                    let weatherCondition = value["weather"][0]["id"].intValue
                     
-                    let weather = Weather(city: "", temperature: temperature, date: date)
+                    let weather = Weather(city: "", temperature: temperature, date: date, weatherCondition: weatherCondition)
                     resultArray.append(weather)
                 }
                 
@@ -69,6 +71,5 @@ struct WeatherService {
         formatter.timeZone = TimeZone(abbreviation: "UTC")
         return formatter.date(from: stringDate)
     }
-    
     
 }

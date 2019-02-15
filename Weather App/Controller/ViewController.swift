@@ -14,6 +14,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var temperaturesCV: UICollectionView!
+    @IBOutlet weak var weatherConditionImage: UIImageView!
     
     var weatherItems = [Weather]() {
         didSet {
@@ -26,6 +27,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
             if let weather = weatherItem {
                 cityLabel.text = weather.city
                 temperatureLabel.text = "\(weather.temperatureCelcius)°"
+                weatherConditionImage.image = UIImage(named: weatherIcon(condition: weather.weatherCondition!))
             }
         }
     }
@@ -49,6 +51,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
             locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
             locationManager.startUpdatingLocation()
         }
+        
+        temperaturesCV.layer.backgroundColor = UIColor.white.withAlphaComponent(CGFloat(0.0)).cgColor
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -82,6 +86,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "weatherCollectionCell", for: indexPath) as! WeatherCell
         cell.weather = weatherItems[indexPath.item]
+        
+        cell.layer.borderColor = UIColor(red: CGFloat(0.16), green: CGFloat(0.16), blue: CGFloat(0.19), alpha: CGFloat(1.0)).cgColor
+        cell.layer.borderWidth = 1
+        cell.layer.cornerRadius = 8
+        
+        let blurEffect = UIBlurEffect(style: .dark)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.frame = cell.bounds
+        blurView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        cell.backgroundView = blurView
+        
         return cell
     }
     
@@ -99,6 +114,49 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
             })
             
         }
+    }
+    
+    private func weatherIcon(condition: Int) -> String {
+        
+        switch (condition) {
+            
+        case 0...300 :
+            return "tstorm1"
+            
+        case 301...500 :
+            return "light_rain"
+            
+        case 501...600 :
+            return "shower3"
+            
+        case 601...700 :
+            return "snow4"
+            
+        case 701...771 :
+            return "fog"
+            
+        case 772...799 :
+            return "tstorm3"
+            
+        case 800 :
+            return "sunny"
+            
+        case 801...804 :
+            return "cloudy2"
+            
+        case 900...903, 905...1000  :
+            return "tstorm3"
+            
+        case 903 :
+            return "snow5"
+            
+        case 904 :
+            return "sunny"
+            
+        default :
+            return "dunno"
+        }
+        
     }
     
 

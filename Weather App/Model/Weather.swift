@@ -14,15 +14,17 @@ struct Weather {
     var temperatureFahrenheit: Int
     var city: String
     var date: Date?
+    var weatherCondition: Int?
     
-    init(city: String, temperature: Int) {
+    init(city: String, temperature: Int, weatherCondition: Int) {
         self.city = city
         self.temperatureCelcius = temperature - 273
+        self.weatherCondition = weatherCondition
         self.temperatureFahrenheit = Weather.fahrenheitFromCelcius(inCelcius: temperature)
     }
     
-    init(city: String, temperature: Int, date: Date?) {
-        self.init(city: city, temperature: temperature)
+    init(city: String, temperature: Int, date: Date?, weatherCondition: Int) {
+        self.init(city: city, temperature: temperature, weatherCondition: weatherCondition)
         self.date = date
     }
     

@@ -15,6 +15,7 @@
 		0156EF342215A32F000FAB7C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0156EF322215A32F000FAB7C /* Main.storyboard */; };
 		0156EF362215A333000FAB7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0156EF352215A333000FAB7C /* Assets.xcassets */; };
 		0156EF392215A333000FAB7C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0156EF372215A333000FAB7C /* LaunchScreen.storyboard */; };
+		018790802216F18C00B5A79D /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0187907F2216F18C00B5A79D /* Info.swift */; };
 		C3D6C3AAC00A9F87A4EE39CC /* Pods_Weather_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF7F05ABC217D2B654B56C25 /* Pods_Weather_App.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		0156EF352215A333000FAB7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0156EF382215A333000FAB7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0156EF3A2215A333000FAB7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0187907F2216F18C00B5A79D /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
 		AF2C675A9348FE373410184B /* Pods-Weather App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Weather App/Pods-Weather App.debug.xcconfig"; sourceTree = "<group>"; };
 		AF7F05ABC217D2B654B56C25 /* Pods_Weather_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBA6DFF26FFDD97DEBF8433A /* Pods-Weather App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather App.release.xcconfig"; path = "Pods/Target Support Files/Pods-Weather App/Pods-Weather App.release.xcconfig"; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				01450FFB2215E11400ABCA14 /* View */,
 				0156EF352215A333000FAB7C /* Assets.xcassets */,
 				0156EF3A2215A333000FAB7C /* Info.plist */,
+				0187907F2216F18C00B5A79D /* Info.swift */,
 			);
 			path = "Weather App";
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 				01450FFA2215DBB200ABCA14 /* WeatherService.swift in Sources */,
 				0156EF312215A32F000FAB7C /* ViewController.swift in Sources */,
 				01450FF82215DAC000ABCA14 /* Weather.swift in Sources */,
+				018790802216F18C00B5A79D /* Info.swift in Sources */,
 				0156EF2F2215A32F000FAB7C /* AppDelegate.swift in Sources */,
 				012C68742215D894009383A3 /* WeatherCell.swift in Sources */,
 			);
