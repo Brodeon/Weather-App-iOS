@@ -15,6 +15,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var temperaturesCV: UICollectionView!
     @IBOutlet weak var weatherConditionImage: UIImageView!
+    @IBOutlet weak var refreshLabel: UILabel!
     
     var weatherItems = [Weather]() {
         didSet {
@@ -32,6 +33,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
         }
     }
     
+    var refreshLabelOriginalFrame: CGRect?
+    
     
     var locationManager = CLLocationManager()
     var weatherService = WeatherService()
@@ -39,10 +42,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(onSwipeGesture))
+        swipeGesture.direction = .down
+        view.addGestureRecognizer(swipeGesture)
+        
         temperaturesCV.delegate = self
         temperaturesCV.dataSource = self
         locationManager.delegate = self
         weatherService.delegate = self
+        
+        refreshLabel.frame = CGRect(x: view.frame.origin.x, y: view.frame.origin.y - 30, width: view.frame.width, height: refreshLabel.frame.height)
+        refreshLabelOriginalFrame = refreshLabel.frame
         
         locationManager.requestWhenInUseAuthorization()
         
@@ -53,6 +64,34 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
         }
         
         temperaturesCV.layer.backgroundColor = UIColor.white.withAlphaComponent(CGFloat(0.0)).cgColor
+    }
+    
+    @objc func onSwipeGesture(sender: UISwipeGestureRecognizer) {
+        let window = UIApplication.shared.keyWindow
+        
+        if sender.direction == .down {
+            view.layoutIfNeeded()
+            UIView.animate(withDuration: 0.2, animations: {
+                self.refreshLabel.frame = CGRect(x: self.view.frame.origin.x, y: window!.safeAreaInsets.top, width: self.view.frame.width, height: self.refreshLabelOriginalFrame!.height)
+            }) { (completed) in
+                self.refreshData()
+            }
+        }
+    }
+    
+    func moveRefreshLabelToOrignalPosition() {
+        view.layoutIfNeeded()
+        UIView.animate(withDuration: 0.2) {
+            self.refreshLabel.frame = self.refreshLabelOriginalFrame!
+        }
+    }
+    
+    func refreshData() {
+        let authStatus = CLLocationManager.authorizationStatus()
+        if authStatus == .authorizedWhenInUse {
+            locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+            locationManager.startUpdatingLocation()
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -104,6 +143,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
         if let weather = weatherData {
             self.weatherItem = weather
         }
+        moveRefreshLabelToOrignalPosition()
+        
     }
     
     func weatherResponse(weatherArray: [Weather]?, error: WeatherError?) {

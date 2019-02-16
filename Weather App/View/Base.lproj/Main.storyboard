@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cityBackground" translatesAutoresizingMaskIntoConstraints="NO" id="r20-eJ-9kq">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="770"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="42" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dX-OD-hIL">
                                 <rect key="frame" x="8" y="28" width="398" height="79"/>
@@ -113,6 +113,12 @@
                                     <constraint firstAttribute="width" constant="124" id="Mnj-iT-TUn"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Refreshing weather data" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UEH-5g-m7F">
+                                <rect key="frame" x="0.0" y="-30" width="414" height="14"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="11"/>
+                                <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4dX-OD-hIL" secondAttribute="trailing" constant="8" id="0A5-hx-Oce"/>
@@ -129,12 +135,16 @@
                             <constraint firstItem="r20-eJ-9kq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="cwK-Nj-qsl"/>
                             <constraint firstItem="SDe-OI-TZt" firstAttribute="top" secondItem="Qa7-wq-h9w" secondAttribute="bottom" constant="8" id="eCG-QQ-Nls"/>
                             <constraint firstItem="Qa7-wq-h9w" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="kdP-Mr-pjb"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="r20-eJ-9kq" secondAttribute="bottom" id="qAz-yD-iBJ"/>
+                            <constraint firstItem="UEH-5g-m7F" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="-50" id="pbc-f7-WNP"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="r20-eJ-9kq" secondAttribute="bottom" constant="-34" id="qAz-yD-iBJ"/>
+                            <constraint firstItem="UEH-5g-m7F" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="t7G-KH-2fW"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="UEH-5g-m7F" secondAttribute="trailing" id="vnc-DM-1Ds"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="cityLabel" destination="Qa7-wq-h9w" id="lKW-I8-DHa"/>
+                        <outlet property="refreshLabel" destination="UEH-5g-m7F" id="dzg-Ue-Ny5"/>
                         <outlet property="temperatureLabel" destination="4dX-OD-hIL" id="Wzs-O1-d2o"/>
                         <outlet property="temperaturesCV" destination="QSM-Xl-bX6" id="T51-Oh-tY0"/>
                         <outlet property="weatherConditionImage" destination="SDe-OI-TZt" id="c7u-aY-ryd"/>
