@@ -56,13 +56,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
         refreshLabelOriginalFrame = refreshLabel.frame
         
         locationManager.requestWhenInUseAuthorization()
-        
-        let authStatus = CLLocationManager.authorizationStatus()
-        if authStatus == .authorizedWhenInUse {
-            locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-            locationManager.startUpdatingLocation()
-        }
-        
         temperaturesCV.layer.backgroundColor = UIColor.white.withAlphaComponent(CGFloat(0.0)).cgColor
     }
     
@@ -114,6 +107,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
         let authStatus = CLLocationManager.authorizationStatus()
         if authStatus == .authorizedWhenInUse {
             locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+            locationManager.distanceFilter = 100
             locationManager.startUpdatingLocation()
         }
     }
